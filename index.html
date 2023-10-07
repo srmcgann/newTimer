@@ -21,6 +21,14 @@
   <body>
     <canvas id="c"></canvas>
     <script>
+      hours = 1
+      minutes = 5
+      seconds = 3
+      if(location.href.indexOf('time=')!==-1){
+        let s = location.href.split('time=')[1]
+        s = s.split('&')[0].split(':')
+        if(s.length==3) [hours, minutes, seconds] = s
+      }
       c = document.querySelector('#c')
       c.width = 1920
       c.height = 400
@@ -172,9 +180,6 @@
           bctx.fillStyle = '#fff'
           glyphs.split('').map((glyph, idx) => bctx.fillText(glyph, 0, fs/1.33 + idx*fs))
           spritemap = bctx.getImageData(0,0,buffer.width,buffer.height)
-          hours = 1
-          minutes = 5
-          seconds = 3
           curps = Array(6).fill(0)
 
           G_ = 100000, iSTc = 1e4
@@ -387,6 +392,6 @@
         requestAnimationFrame(Draw)
       }
       Draw()
-     </script>
+    </script>
   </body>
 </html>
